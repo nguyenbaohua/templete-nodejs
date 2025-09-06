@@ -5,6 +5,7 @@ const rateLimit = require('express-rate-limit');
 require('dotenv').config({ path: './config.env' });
 
 const authRoutes = require('./routes/auth');
+const vehicleRoutes = require('./routes/vehicles');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -32,6 +33,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.use('/api/auth', authRoutes);
+app.use('/api', vehicleRoutes);
 
 // Health check endpoint
 app.get('/health', (req, res) => {
@@ -64,4 +66,5 @@ app.listen(PORT, () => {
   console.log(`📝 Environment: ${process.env.NODE_ENV}`);
   console.log(`🔗 Health check: http://localhost:${PORT}/health`);
   console.log(`🔐 Auth API: http://localhost:${PORT}/api/auth`);
+  console.log(`🚛 Vehicles API: http://localhost:${PORT}/api/vehicles`);
 });

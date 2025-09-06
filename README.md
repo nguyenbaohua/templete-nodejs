@@ -21,11 +21,13 @@ A complete Node.js backend template with authentication API, JWT tokens, and moc
 ├── config.env             # Environment variables
 ├── README.md              # Project documentation
 ├── routes/
-│   └── auth.js           # Authentication routes
+│   ├── auth.js           # Authentication routes
+│   └── vehicles.js       # Vehicles routes
 ├── middleware/
 │   └── auth.js           # Authentication middleware
 └── data/
-    └── mockUsers.js      # Mock user data
+    ├── mockUsers.js      # Mock user data
+    └── mockVehicles.js   # Mock vehicles data
 ```
 
 ## Quick Start
@@ -107,6 +109,57 @@ Authorization: Bearer <token>
 
 #### POST `/api/auth/logout`
 Logout endpoint (client-side token removal).
+
+### Vehicles
+
+#### POST `/api/vehicles`
+Get vehicles by company_id and location_id (requires authentication).
+
+**Headers:**
+```
+Authorization: Bearer <token>
+Content-Type: application/json
+```
+
+**Request Body:**
+```json
+{
+  "company_id": "1",
+  "locaion_id": "1"
+}
+```
+
+**Response:**
+```json
+{
+  "success": true,
+  "message": "Vehicles retrieved successfully",
+  "data": {
+    "vehicles": [
+      {
+        "id": 1,
+        "doorId": "0001",
+        "palete": "palate 1",
+        "location": "location 1",
+        "info": "info 1",
+        "company_id": 1,
+        "locaion_id": 1
+      }
+    ],
+    "total": 11,
+    "filters": {
+      "company_id": 1,
+      "locaion_id": 1
+    }
+  }
+}
+```
+
+#### GET `/api/vehicles/all`
+Get all vehicles (requires authentication).
+
+#### GET `/api/vehicles/:id`
+Get vehicle by ID (requires authentication).
 
 ### Health Check
 

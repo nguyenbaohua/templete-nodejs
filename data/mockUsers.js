@@ -3,7 +3,7 @@ const mockUsers = [
   {
     id: 1,
     email: 'admin@example.com',
-    password: 'admin123',
+    password: 'admin123!@#',
     firstName: 'Admin',
     lastName: 'User',
     role: 'admin',
